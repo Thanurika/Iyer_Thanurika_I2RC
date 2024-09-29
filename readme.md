@@ -8,14 +8,14 @@ Week: **[4]**
 
 ## Code
 
-The main topic this week was: **[TOPIC NAME]**
+The main topic this week was: **[Publish, push, and pull in GitHub]**
 
 Commands: **[COMMANDS]**
 
 Subsystems: **[SUBSYSTEMS]**
 
 ### How does the code work?
-Write about how it works here
+Created a project in WPiLib. Then, we created a repository in Github.
 
 
 ### Important notes for future reference
