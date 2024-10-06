@@ -54,6 +54,16 @@ public double getAngle(){
 public void reset(){
   navx.reset();
 }
+public double getTicks(){
+ return leftDriveTalon.getSelectedSensorPosition() + rightDriveTalon.getSelectedSensorPosition()/2; 
+}
+public double getMeters(){
+return Units.inchesToMeters(6)*Math.PI/4096*getTicks();
+}
+public void resetEncoders(){
+  leftDriveTalon.setSelectedSensorPosition(0,0,10);
+  rightDriveTalon.setSelectedSensorPosition(0,0,10);
+}
 
 
   @Override
@@ -63,6 +73,7 @@ public void reset(){
     SmartDashboard.putNumber("Right Voltage", rightDriveTalon.getMotorOutputPercent());
     SmartDashboard.putNumber("Angle", navx.getAngle());
   }
+
 
   @Override
   public void simulationPeriodic() {
