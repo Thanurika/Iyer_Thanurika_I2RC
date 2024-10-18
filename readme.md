@@ -20,6 +20,32 @@ Both motors are set to NeutralMode.Coast to allow them to move freely when no vo
 
 ### Important notes for future reference
 Notes about git, and helpful resources, etc. 
-N/A
 
-Please put them here, they will really help you in the future 
+package frc.robot.commands;
+import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.Drivetrain;
+Command Outline
+public class example extends Command{
+    int variable;
+    public exampleCommand(int var){
+        variable = var
+        //other implementation here
+    }
+    @Override
+    public void initialize(){
+        // intialization occurs here
+    }
+    @Override 
+    public void execute(){
+        // runs constantly until condition is met
+    }
+    @Override
+    public void end(boolean interrupted){
+        // ends the command if it is interrupted
+    }
+    @Override
+    public boolean isFinished(){
+        // this will return true when the command has finished
+        return true;
+    }
+}
