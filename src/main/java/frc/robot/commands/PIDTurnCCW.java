@@ -8,7 +8,7 @@ import frc.robot.subsystems.Drivetrain;
 public class PIDTurnCCW extends Command{
     Drivetrain dt;
     double setPointAngle;
-    PIDController PID = new PIDController(0.7/90,0, 0);
+    PIDController PID = new PIDController(0.3/90,0, 0);
 
 
     public PIDTurnCCW(Drivetrain dt, double setPoint){
