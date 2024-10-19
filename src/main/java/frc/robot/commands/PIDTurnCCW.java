@@ -1,26 +1,23 @@
 package frc.robot.commands;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Drivetrain;
 
-public class PIDTurnccw {
-    DriveTrain dt;
+public class PIDTurnCCW extends Command{
+    Drivetrain dt;
     double setPointAngle;
-    PIDController PID = new PIDController(0,9, 0, 0);
+    PIDController PID = new PIDController(0.7/90,0, 0);
 
-    public PIDTurnccw(Drivetrain dt2, int i) {
-        //TODO Auto-generated constructor stub
-    }
 
-    public PIDTurnCCW(DriveTrain dt, double setPoint){
+    public PIDTurnCCW(Drivetrain dt, double setPoint){
 
         this.dt = dt;
         this.setPointAngle = setPoint;
 
-        PID.setTolerance(5);
-        addRequirements(this.dt);
+        addRequirements(dt);
+        PID.setTolerance(10);
     }
 
     @Override
@@ -29,17 +26,11 @@ public class PIDTurnccw {
         dt.tankDrive(0, 0);
     }
 
-    double output = PID.calculate(90.0);
+    
     @Override
     public void execute() {
-        if (output > 0){
-            if (output > 0){
-                dt.tankDrive(output, -(output));
-            }
-            else {
-                dt.tankDrive(-(output), output);
-            }
-        }
+        double output = PID.calculate(dt.getAngle(), setPointAngle);
+        dt.tankDrive(-output, output);
     }
 
     @Override
@@ -50,6 +41,6 @@ public class PIDTurnccw {
 
     @Override
     public boolean isFinished() {
-        return PID.atSetPoint();
+        return PID.atSetpoint();
     }
 }
