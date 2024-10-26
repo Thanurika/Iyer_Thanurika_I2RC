@@ -6,29 +6,32 @@ import edu.wpi.first.wpilibj.Joystick;
 public class Teleop extends Command{
     double leftPowerRaw;
     double rightPowerRaw;
-    Drivetrain dt;
+    Drivetrain drivetrain;
     Joystick joy;
 
 
-    public Teleop(Joystick joystick){
-        joy = joystick;
-        leftPowerRaw = joystick.getRawAxis(1);
-        leftPowerRaw = joystick.getRawAxis(4);
+    public Teleop(Drivetrain dt, Joystick joystick){
+        this.joy = joystick;
+        this.drivetrain = dt;
+        addRequirements(dt);
     }
 
 @Override public void initialize(){ 
-    dt.tankDrive(0, 0);
+    drivetrain.tankDrive(0, 0);
  
 }
 @Override public void execute(){ 
-    dt.tankDrive(leftPowerRaw, rightPowerRaw);
+    leftPowerRaw = joy.getRawAxis(1);
+    rightPowerRaw = joy.getRawAxis(5);
+    drivetrain.tankDrive(leftPowerRaw * 0.7, rightPowerRaw * 0.7);
+
 } 
 @Override public void end(boolean interrupted){
-     dt.tankDrive(0, 0);
+     drivetrain.tankDrive(0, 0);
 
 } 
 @Override public boolean isFinished(){ 
-return true;
+return false;
  } 
 }
 

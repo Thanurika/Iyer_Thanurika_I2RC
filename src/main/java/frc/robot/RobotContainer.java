@@ -7,6 +7,7 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.EncoderDrive;
 import frc.robot.commands.PIDTurnCCW;
+import frc.robot.commands.Teleop;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.math.controller.PIDController;
@@ -25,18 +26,14 @@ public class RobotContainer {
   private final Drivetrain dt = new Drivetrain();
   private final EncoderDrive drive = new EncoderDrive(dt, 1);
   private final PIDTurnCCW PIDTurn = new PIDTurnCCW(dt, 90);
-  
-
-
-  // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandXboxController m_driverController =
-      new CommandXboxController(OperatorConstants.kDriverControllerPort);
   private final Joystick joy = new Joystick(0);
+  private final Teleop Teleop = new Teleop(dt,joy);
 
+  // Replace with CommandPS4Controller or CommandJoystick if needed  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
-    dt.setDefaultCommand(PIDTurn);
+    dt.setDefaultCommand(Teleop);
     configureBindings();
   }
 
